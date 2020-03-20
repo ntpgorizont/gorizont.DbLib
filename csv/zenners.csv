@@ -1,0 +1,5 @@
+SMAJ40A,"",SMA,44.4,6.2,0.001,"",Littelfuse,"Transient Voltage Suppression Diode",ZENNER,DO-214AC,""
+BZX84C10LT1G,"",SOT-23,10,20mA,0.1mA,0.68,"ON Semiconductor","250 mW SOT−23 Surface Mount",ZENNER-A1C3,SOT-23,""
+BZX84C8V2LT1G,"",SOT-23,8.2,20mA,0.1mA,0.68,"ON Semiconductor","250 mW SOT−23 Surface Mount",ZENNER-A1C3,SOT-23,""
+BZX84C5V6LT1G,"",SOT-23,5.6,20mA,0.1mA,0.68,"ON Semiconductor","250 mW SOT−23 Surface Mount",ZENNER-A1C3,SOT-23,""
+SMAJ33A,"",SMA,36.7,7.5,0.001,0.68,Littlefuse,"Transient Voltage Suppression Diode",ZENNER,DO-214AC,""
