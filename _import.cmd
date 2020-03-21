@@ -23,11 +23,9 @@ echo LibraryDatabaseType= >> %1.DbLib
 echo LibraryDatabasePath= >> %1.DbLib
 echo DatabasePathRelative=0 >> %1.DbLib
 echo TopPanelCollapsed=0 >> %1.DbLib
-for /f %%f in ("%1.db") do ( 
-	set pp=%%~dpf
-	set pp=!pp:~0,-1!
-	echo LibrarySearchPath=!pp! >> %1.DbLib
-)
+set pp=%~dp0
+set pp=%pp:~0,-1%
+echo LibrarySearchPath=%pp% >> %1.DbLib
 echo OrcadMultiValueDelimiter=, >> %1.DbLib
 echo SearchSubDirectories=1 >> %1.DbLib
 echo SchemaName=ALTIUM >> %1.DbLib
