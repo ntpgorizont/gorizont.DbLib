@@ -1,18 +1,13 @@
 @echo off
-set SQLITE3_PATH=C:\sqlite
+rem set SQLITE3_PATH=C:\sqlite
 
-%SQLITE3_PATH%\sqlite3.exe %1 "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%%';" > %TMP%\tables.txt
+if not exist csv mkdir csv
 
-if not exist %2 mkdir %2
+if exist csv\query.sql del /q csv\query.sql
 
-if exist %2\query.sql del /q %2\query.sql
-rem echo .mode csv > %2\query.sql
-
-for /f %%i in (%TMP%\tables.txt) do (
+for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %1.db "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%%';"`) do (
 	echo export %%i
-	echo DROP TABLE IF EXISTS %%i; >> %2\query.sql
-	%SQLITE3_PATH%\sqlite3.exe %1 ".schema %%i" >> %2\query.sql
-	%SQLITE3_PATH%\sqlite3.exe -noheader -csv %1 "select * from %%i;" > %2\%%i.csv
+	echo DROP TABLE IF EXISTS %%i; >> csv\query.sql
+	%SQLITE3_PATH%\sqlite3.exe %1.db ".schema %%i" >> csv\query.sql
+	%SQLITE3_PATH%\sqlite3.exe -noheader -csv %1.db "select * from %%i;" > csv\%%i.csv
 )
-
-del /q %TMP%\tables.txt
