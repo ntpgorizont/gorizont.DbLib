@@ -1,16 +1,14 @@
 # Gorizont.DbLib
 Altium библиотека электронных компонентов для Горизонта и остальных
 ## Что делать до git clone
-1. Скачать и установить [sqlite3](https://www.sqlite.org/download.html)
-2. Скачать и установить [ODBC-драйвер для sqlite3](http://www.ch-werner.de/sqliteodbc/)
+1. Скачать и установить [sqlite-tools](https://www.sqlite.org/download.html)
+2. Скачать и установить [ODBC-драйвер для sqlite](http://www.ch-werner.de/sqliteodbc/)
 3. Создать переменную окружения SQLITE3_PATH, где указать путь к программе sqlite3.exe
 ## Что делать после git clone
-1. В командной строке Windows перейти в директорию клонирования
-2. Набрать: `_import.cmd <имя_вашей_БД_компонентов_без_расширения>`
-3. В Altium Designer, в Preferences -> Data Manadgement -> Installed Libraries установить библиотеку `<имя_вашей_БД_компонентов_без_расширения>.DbLib`, созданную в п.2
+1. Дабл-клик на `_import.cmd`
+2. В Altium Designer, в Preferences -> Data Manadgement -> Installed Libraries установить библиотеку `gorizont.DbLib`, созданную в п.1
 ## Что делать после git pull
-1. Выполнить п.1,2 предыдущего раздела
+1. Дабл-клик на `_import.cmd`
 ## Что делать перед git push
-1. В командной строке Windows перейти в директорию клонирования
-2. Набрать: `_export.cmd <имя_вашей_БД_компонентов_без_расширения>`
-3. Набрать `_clean.cmd`
+1. Дабл-клик на `_export.cmd`
+2. Дабл-клик на `_clean.cmd`
