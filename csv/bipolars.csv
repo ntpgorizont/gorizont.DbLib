@@ -1,2 +1,4 @@
 MMBT3904L,"",40,0.2,100,SOT-23,"ON Semiconductor","NPN General Purpose Transistor",NPN-B1E2C3,SOT-23,""
 2N3906,"",40,0.2,100,TO-92,"ON Semiconductor","PNP General Purpose Transistor",PNP-E1B2C3,TO-92,""
+MMBT3906L,,40,0.2,100,SOT-23,"ON Semiconductor","PNP General Purpose Transistor",PNP-B1E2C3,SOT-23,
+BCM857BS,"",45,100,290,SOT-363,Nexperia,"PNP matched double transistors",BCM857,SOT-363,""

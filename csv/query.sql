@@ -192,3 +192,12 @@ CREATE TABLE bipolars(
 "Footprint Ref" VARCHAR(45),
 "PCB3D Ref" VARCHAR(45)
 );
+DROP TABLE IF EXISTS TexasInstruments; 
+CREATE TABLE [TexasInstruments](
+  [Part Name] VARCHAR(45), 
+  [TU] VARCHAR(45), 
+  [case] VARCHAR(45), 
+  [manufacturer] VARCHAR(45), 
+  [Description] VARCHAR(255), 
+  [Library Ref] VARCHAR(45), 
+  [Footprint Ref] VARCHAR(45));
