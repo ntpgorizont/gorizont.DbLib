@@ -1,9 +1,9 @@
 @echo off
 setlocal enabledelayedexpansion
-rem set SQLITE3_PATH=C:\sqlite
 set file=gorizont
+set PATH=%SQLITE3_PATH%;%PATH%
 
-%SQLITE3_PATH%\sqlite3.exe %file%.db < csv\query.sql
+sqlite3.exe %file%.db < csv\query.sql
 
 echo [OutputDatabaseLinkFile] > %file%.DbLib
 echo Version=1.1 >> %file%.DbLib
@@ -33,9 +33,9 @@ echo SchemaName=ALTIUM >> %file%.DbLib
 
 set n=1
 
-for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%%';"`) do (
+for /f "usebackq" %%i in (`sqlite3.exe %file%.db "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%%';"`) do (
 	echo import %%i
-	%SQLITE3_PATH%\sqlite3.exe -csv %file%.db ".import csv\\%%i.csv %%i"
+	sqlite3.exe -csv %file%.db ".import csv\\%%i.csv %%i"
 
 	echo [Table!n!] >> %file%.DbLib
 	echo SchemaName= >> %file%.DbLib
@@ -49,10 +49,10 @@ for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FRO
 
 set m=1
 
-for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%%';"`) do (
+for /f "usebackq" %%i in (`sqlite3.exe %file%.db "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%%';"`) do (
 	echo create FieldMaps for %%i
 
-	for /f "usebackq" %%t in ( `c:\sqlite\sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Part Name"` ) do (
+	for /f "usebackq" %%t in ( `sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Part Name"` ) do (
 		if not %%t=="" (
 			echo [FieldMap!m!] >> %file%.DbLib
 			echo Options=FieldName=%%i.Part Name^|TableNameOnly=%%i^|FieldNameOnly=Part Name^|FieldType=0^|ParameterName=Part Name^|VisibleOnAdd=False^|AddMode=0^|RemoveMode=0^|UpdateMode=0 >> %file%.DbLib
@@ -60,7 +60,7 @@ for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FRO
 		)
 	)
 
-	for /f "usebackq" %%t in ( `c:\sqlite\sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Description"` ) do (
+	for /f "usebackq" %%t in ( `sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Description"` ) do (
 		if not %%t=="" (
 			echo [FieldMap!m!] >> %file%.DbLib
 			echo Options=FieldName=%%i.Description^|TableNameOnly=%%i^|FieldNameOnly=Description^|FieldType=1^|ParameterName=[Description]^|VisibleOnAdd=False^|AddMode=0^|RemoveMode=0^|UpdateMode=0 >> %file%.DbLib
@@ -68,7 +68,7 @@ for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FRO
 		)
 	)
 
-	for /f "usebackq" %%t in ( `c:\sqlite\sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Library Ref"` ) do (
+	for /f "usebackq" %%t in ( `sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Library Ref"` ) do (
 		if not %%t=="" (
 			echo [FieldMap!m!] >> %file%.DbLib
 			echo Options=FieldName=%%i.Library Ref^|TableNameOnly=%%i^|FieldNameOnly=Library Ref^|FieldType=1^|ParameterName=[Library Ref]^|VisibleOnAdd=False^|AddMode=0^|RemoveMode=0^|UpdateMode=0 >> %file%.DbLib
@@ -76,7 +76,7 @@ for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FRO
 		)
 	)
 
-	for /f "usebackq" %%t in ( `c:\sqlite\sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Footprint Ref"` ) do (
+	for /f "usebackq" %%t in ( `sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"Footprint Ref"` ) do (
 		if not %%t=="" (
 			echo [FieldMap!m!] >> %file%.DbLib
 			echo Options=FieldName=%%i.Footprint Ref^|TableNameOnly=%%i^|FieldNameOnly=Footprint Ref^|FieldType=1^|ParameterName=[Footprint Ref]^|VisibleOnAdd=False^|AddMode=0^|RemoveMode=0^|UpdateMode=0 >> %file%.DbLib
@@ -84,7 +84,7 @@ for /f "usebackq" %%i in (`%SQLITE3_PATH%\sqlite3.exe %file%.db "SELECT name FRO
 		)
 	)
 
-	for /f "usebackq" %%t in ( `c:\sqlite\sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"PCB3D Ref"` ) do (
+	for /f "usebackq" %%t in ( `sqlite3.exe %file%.db "pragma table_info(%%i);" ^| findstr /C:"PCB3D Ref"` ) do (
 		if not %%t=="" (
 			echo [FieldMap!m!] >> %file%.DbLib
 			echo Options=FieldName=%%i.PCB3D Ref^|TableNameOnly=%%i^|FieldNameOnly=PCB3D Ref^|FieldType=1^|ParameterName=[PCB3D Ref]^|VisibleOnAdd=False^|AddMode=0^|RemoveMode=0^|UpdateMode=0 >> %file%.DbLib
