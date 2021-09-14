@@ -8,3 +8,5 @@ AD8603AUJ,"",TSOT5,"Analog Devices","Precision Micropower, Low Noise CMOS, Rail-
 LTM8067IY#PBF,"",BGA38,"Analog Devices","2.8VIN to 40VIN Isolated µModule DC/DC Converter",LTM8067,BGA38,""
 AD7746ARUZ,"",TSSOP-16,"Analog Devices","24-Bit Capacitance-to-Digital Converter with Temperature Sensor",AD7746ARUZ,TSSOP-16,""
 LT3470ETS8,"",TSOT23-8,"Analog Devices","Micropower Buck Regulator with Integrated Boost and Catch Diodes",LT3470,TSOT23-8,""
+AD8009AR,"",SO8,"Analog Devices","1 GHz, 5500 V/s, Low Distortion Amplifier",AD8009AR,SO-8(3D),""
+LT1715CMS#PBF,"",MSOP10,"Analog Devices","4ns, 150MHz Dual Comparator with Independent Input/Output Supplies",LT1715,MSOP10,""
